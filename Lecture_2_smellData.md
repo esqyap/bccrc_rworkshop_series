@@ -32,22 +32,16 @@ toc_depth: 2
 * The raw data usually consists of the numeric data and a description for the experimental design pertaining to the numeric data. 
 
 * Please download the data and description files from:
-    * Data: TODO(insert link)
-    * Description of data: TODO(insert link)
+    * Data: https://github.com/evayap/bccrc_rworkshop_series/tree/master/lecture2/data/GSE7191-data.txt
+    * Description of data: https://github.com/evayap/bccrc_rworkshop_series/tree/master/lecture2/data/GSE7191-design.txt
 
 * Let's import the data by typing the command below into the console, and press enter:
 
 
 ```r
 # set your working directory before retrieving the files
-setwd("/Users/jingyunzhu/Documents/R_workshop")
-```
+# setwd("/Users/jingyunzhu/Documents/R_workshop")
 
-```
-## Error in setwd("/Users/jingyunzhu/Documents/R_workshop"): cannot change working directory
-```
-
-```r
 # import the numeric data
 data <- read.table("data/GSE7191-data.txt", header=TRUE, row.names=1)
 # import the design info
@@ -110,13 +104,12 @@ str(design)
 ```
 
 ```
-## 'data.frame':	50 obs. of  4 variables:
-##  $ DateRun    : Factor w/ 8 levels "01/16/04","03/11/04",..: 5 5 5 5 6 4 4 6 6 6 ...
-##  $ Genotype   : Factor w/ 3 levels "S1P2_KO","S1P3_KO",..: 3 3 3 3 3 3 3 3 3 3 ...
-##  $ BrainRegion: Factor w/ 2 levels "hippocampus",..: 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Sex        : Factor w/ 2 levels "female","male": 2 2 2 2 2 1 1 1 1 1 ...
-```
-
+'data.frame':  50 obs. of  4 variables:
+ $ DateRun    : Factor w/ 8 levels "01/16/04","03/11/04",..: 5 5 5 5 ...
+ $ Genotype   : Factor w/ 3 levels "S1P2_KO","S1P3_KO",..: 3 3 3 3 3 ...
+ $ BrainRegion: Factor w/ 2 levels "hippocampus",..: 2 2 2 2 2 2 2 2 ...
+ $ Sex        : Factor w/ 2 levels "female","male": 2 2 2 2 2 1 1 1  ...
+ ```
 
 ## How are the samples assigned based on the experimental design?
 
@@ -292,18 +285,22 @@ identical(rownames(t.sData), rownames(design))
 
 ```r
 annotatedDat <- data.frame(design, t.sData)
+```
+
+
+```r
 str(annotatedDat)
 ```
 
 ```
-## 'data.frame':	50 obs. of  7 variables:
-##  $ DateRun    : Factor w/ 8 levels "01/16/04","03/11/04",..: 5 5 5 5 6 4 4 6 6 6 ...
-##  $ Genotype   : Factor w/ 3 levels "S1P2_KO","S1P3_KO",..: 3 3 3 3 3 3 3 3 3 3 ...
-##  $ BrainRegion: Factor w/ 2 levels "hippocampus",..: 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Sex        : Factor w/ 2 levels "female","male": 2 2 2 2 2 1 1 1 1 1 ...
-##  $ X104099_at : num  6.29 6.2 6.46 6.55 6.31 ...
-##  $ X99071_at  : num  7.28 7.26 7.25 7.35 7.11 ...
-##  $ X94067_at  : num  6.17 6.15 6.14 6.33 6.19 ...
+'data.frame':  50 obs. of  7 variables:
+ $ DateRun    : Factor w/ 8 levels "01/16/04","03/11/04",..: 5 5 5 5 ...
+ $ Genotype   : Factor w/ 3 levels "S1P2_KO","S1P3_KO",..: 3 3 3 3 3 ...
+ $ BrainRegion: Factor w/ 2 levels "hippocampus",..: 2 2 2 2 2 2 2 2 ...
+ $ Sex        : Factor w/ 2 levels "female","male": 2 2 2 2 2 1 1 1  ...
+ $ X104099_at : num  6.29 6.2 6.46 6.55 6.31 ...
+ $ X99071_at  : num  7.28 7.26 7.25 7.35 7.11 ...
+ $ X94067_at  : num  6.17 6.15 6.14 6.33 6.19 ...
 ```
 
 Notice the "X" added in front of all the probe names.
@@ -346,16 +343,13 @@ str(tall.annoDat)
 ```
 
 ```
-## 'data.frame':	150 obs. of  6 variables:
-##  $ DateRun    : Factor w/ 8 levels "01/16/04","03/11/04",..: 5 5 5 5 6 4 4 6 6 6 ...
-##  $ Genotype   : Factor w/ 3 levels "S1P2_KO","S1P3_KO",..: 3 3 3 3 3 3 3 3 3 3 ...
-##  $ BrainRegion: Factor w/ 2 levels "hippocampus",..: 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Sex        : Factor w/ 2 levels "female","male": 2 2 2 2 2 1 1 1 1 1 ...
-##  $ probeset   : Factor w/ 3 levels "X104099_at","X94067_at",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ geneExp    : num  6.29 6.2 6.46 6.55 6.31 ...
-```
-
-
+'data.frame':  150 obs. of  6 variables:
+ $ DateRun    : Factor w/ 8 levels "01/16/04","03/11/04",..: ...
+ $ Genotype   : Factor w/ 3 levels "S1P2_KO","S1P3_KO",..: 3 ...
+ $ BrainRegion: Factor w/ 2 levels "hippocampus",..: 2 2 2 2 ...
+ $ Sex        : Factor w/ 2 levels "female","male": 2 2 2 2 2 ...
+ $ probeset   : Factor w/ 3 levels "X104099_at","X94067_at",..: ...
+ $ geneExp    : num  6.29 6.2 6.46 6.55 6.31 ...
 
 
 ## Stripplot: gene expression over 1 dimension, e.g. Probeset
@@ -366,7 +360,7 @@ str(tall.annoDat)
    geom_point())
 ```
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
 
 
 
@@ -379,7 +373,7 @@ str(tall.annoDat)
    geom_point()+aes(color = probeset))
 ```
 
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
 
 
 ## What do we mean by ggplot2 has pretty picture?
@@ -395,7 +389,7 @@ p <- ggplot(annotatedDat, aes(x = X104099_at, y = X94067_at))
 (p  <- p + geom_point(alpha = 0.5))
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
 
 ## Plotting your Data: Density plot
 
@@ -405,7 +399,7 @@ p <- ggplot(annotatedDat, aes(x = X104099_at, y = X94067_at))
    stat_density(geom = "line", position = "identity"))
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png) 
 
 ## Plotting your Data: Box plot over Genotype
 
@@ -415,7 +409,7 @@ p <- ggplot(annotatedDat, aes(x = X104099_at, y = X94067_at))
    geom_boxplot())
 ```
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png) 
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png) 
 
 ## Plotting your Data: Violin plot over Genotype
 
@@ -425,7 +419,7 @@ p <- ggplot(annotatedDat, aes(x = X104099_at, y = X94067_at))
    geom_violin())
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png) 
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png) 
 
 
 
@@ -486,7 +480,7 @@ heatmap.2(sampleCorrelation, Rowv=NA, Colv=NA, symm=T,trace="none",
           dendrogram="none", col=cols, cexCol=0.5,cexRow=0.5)
 ```
 
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.png) 
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.png) 
 
 
 ## Inspecting the correlation heatmap: seemingly an outlier?
@@ -574,7 +568,7 @@ library(lattice)
 splom(data.frame(outlierGroup), panel = panel.smoothScatter, raster =TRUE)
 ```
 
-![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30-1.png) 
+![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31-1.png) 
 
 
 # Credits
@@ -583,24 +577,16 @@ splom(data.frame(outlierGroup), panel = panel.smoothScatter, raster =TRUE)
 
 
 ### Course Developers:
-
-- Kieran O'Neill
-- Eva Yap
 - Alice Zhu
-
-### Starting Material:
-
-Much material was reused from [Software Carpentry's Bootcamp workshops](https://github.com/swcarpentry/bc/tree/master/novice/r) and from [Andy Teucher's short R course](https://github.com/ateucher/rcourse_site), both under the terms of the [Creative Commons Attribution License](http://creativecommons.org/licenses/by/3.0/). 
+- Eva Yap
 
 ### Reference
 Much of the code and data were borrowed from the [UBC STAT540 course website](http://stat540-ubc.github.io), which was taught by Dr.Jennifer Bryan, Dr.Gabriela Cohen-Freue and Dr.Paul Pavlidis, and Dr.Sara mostafavi.
 
 ### Pizza and Logistics:
-
 - GraSPoDS (especially Eva Yap and Jessica Pilsworth)
 
 ### License:
-
 You are free to download, copy and modify this work in accordance with the [Creative Commons Attribution License](http://creativecommons.org/licenses/by/3.0/).
 
 
